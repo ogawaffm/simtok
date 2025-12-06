@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SqlMatcherFactory {
 
-    private final static String[] SYMBOL_OPERATORS = new String[]{
+    private static final String[] SYMBOL_OPERATORS = new String[]{
         "+", "-", "*", "/", "%", "=", "<", "<=", ">", ">=", "<>", "!=", "||",
     };
 

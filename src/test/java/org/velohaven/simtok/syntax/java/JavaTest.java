@@ -10,11 +10,11 @@ import static org.velohaven.simtok.syntax.Utils.getAbsoluteTestResourcesPath;
 
 public class JavaTest extends AbstractTest<JavaMatchType> {
 
-    final private static String source = readSource(
+    private static final String SOURCE = readSource(
             getAbsoluteTestResourcesPath("java/SampleClass.java")
     );
 
-    final private static String[] reservedWords = readReservedWords(
+    private static final String[] reservedWords = readReservedWords(
             getAbsoluteTestResourcesPath("java/reserved_words.txt")
     );
 
@@ -22,7 +22,7 @@ public class JavaTest extends AbstractTest<JavaMatchType> {
     public void test() {
 
         List<Matcher<JavaMatchType>> matchers = JavaMatcherFactory.create(reservedWords, 128);
-        test(matchers, JavaMatchType.UNRECOGNIZED, source, false);
+        test(matchers, JavaMatchType.UNRECOGNIZED, SOURCE, false);
 
     }
 }

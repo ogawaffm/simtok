@@ -10,7 +10,7 @@ import lombok.NonNull;
 @Getter
 public abstract class AbstractMatcher<T extends Comparable<T>> implements Matcher<T> {
 
-    final private T type;
+    private final T type;
 
     AbstractMatcher(@NonNull final T type) {
         this.type = type;

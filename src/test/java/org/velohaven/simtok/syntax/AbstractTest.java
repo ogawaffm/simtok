@@ -19,7 +19,7 @@ public abstract class AbstractTest<T extends Comparable<T>> {
 
     private Tokenizer<T> tokenizer;
 
-    static public String readSource(String sourceFilename) {
+    public static String readSource(String sourceFilename) {
         try {
             return Utils.readString(sourceFilename);
         } catch (IOException e) {
@@ -27,7 +27,7 @@ public abstract class AbstractTest<T extends Comparable<T>> {
         }
     }
 
-    static public String[] readReservedWords(String reservedWordsFilename) {
+    public static String[] readReservedWords(String reservedWordsFilename) {
         try {
             return Utils.readLines(reservedWordsFilename);
         } catch (IOException e) {
@@ -35,11 +35,11 @@ public abstract class AbstractTest<T extends Comparable<T>> {
         }
     }
 
-    static public String indent(char c, int indention) {
+    public static String indent(char c, int indention) {
         if (indention < 0) {
             return "";
         }
-        return (c + "").repeat(indention);
+        return repeat(c, indention);
     }
 
     public void matchConsumer(Match<T> match) {
@@ -75,7 +75,7 @@ public abstract class AbstractTest<T extends Comparable<T>> {
         tokenizer.tokenize(readSource(sourceFilename), this::matchConsumer);
 
         if (! unrecognizedMatches.isEmpty()) {
-            System.out.println("-".repeat(80));
+            System.out.println(repeat('-', 80));
             System.out.println("Unrecognized matches:");
             for (String token : unrecognizedMatches) {
                 System.out.println(token);
@@ -89,4 +89,13 @@ public abstract class AbstractTest<T extends Comparable<T>> {
         return unrecognizedMatches;
 
     }
+
+    private static String repeat(char c, int count) {
+        StringBuilder sb = new StringBuilder(count);
+        for (int i = 0; i < count; i++) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
 }

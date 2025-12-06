@@ -18,11 +18,11 @@ public class MatcherPrioritySorter<T extends Comparable<T>> {
                 if (result != 0) {
                     return result;
                 }
-                if (m1 instanceof TagPairMatcher<T> tpm1 && m2 instanceof TagPairMatcher<T> tpm2) {
-                    return tpm1.compareTo(tpm2);
+                if (m1 instanceof TagPairMatcher && m2 instanceof TagPairMatcher) {
+                    return ((TagPairMatcher<T>) m1).compareTo(((TagPairMatcher<T>) m2));
                 }
-                if (m1 instanceof SequenceMatcher<?> sm1 && m2 instanceof SequenceMatcher<?> sm2) {
-                    return sm1.getSequence().compareTo(sm2.getSequence());
+                if (m1 instanceof SequenceMatcher<?> && m2 instanceof SequenceMatcher<?>) {
+                    return ((SequenceMatcher<?>) m1).getSequence().compareTo(((SequenceMatcher<?>)m2).getSequence());
                 }
                 int typePriority = m1.getType().compareTo(m2.getType());
 
@@ -30,8 +30,11 @@ public class MatcherPrioritySorter<T extends Comparable<T>> {
                     return typePriority;
                 }
 
-                if (m1 instanceof CaseAwareMatcher<?> m1Case && m2 instanceof CaseAwareMatcher<?> m2Case) {
-                    return Boolean.compare(m2Case.isCaseSensitive(), m1Case.isCaseSensitive());
+                if (m1 instanceof CaseAwareMatcher<?> && m2 instanceof CaseAwareMatcher<?>) {
+                    return Boolean.compare(
+                            ((CaseAwareMatcher<?>) m2).isCaseSensitive(),
+                            ((CaseAwareMatcher<?>) m1).isCaseSensitive()
+                    );
                 }
 
                 return 0;

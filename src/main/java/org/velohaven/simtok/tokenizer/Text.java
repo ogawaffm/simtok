@@ -3,11 +3,13 @@ package org.velohaven.simtok.tokenizer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.experimental.SuperBuilder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @EqualsAndHashCode
+@SuppressWarnings("unused") // Ignore unused warning for public API
 public class Text implements CharSequence, Comparable<Text> {
 
     @EqualsAndHashCode.Exclude
@@ -54,10 +56,6 @@ public class Text implements CharSequence, Comparable<Text> {
         } else {
             return new Text(baseText);
         }
-    }
-
-    public boolean isEmpty() {
-        return length() == 0;
     }
 
     public int getEndIndex() {

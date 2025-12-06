@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unused") // Ignore unused warning for public API
 public class Tokenizer<T extends Comparable<T>> {
 
     private final List<Matcher<T>> matchers;
@@ -80,7 +81,7 @@ public class Tokenizer<T extends Comparable<T>> {
 
                 if (!(matcher instanceof InWordBoundaries) || inputIdx == 0 || !isWordChar(
                     input.charAt(inputIdx - 1))) {
-                    //CharSequence subInput = input.subSequence(inputIdx, input.length());
+
                     foundMatchSize = matcher.findIfAheadIn(subInput);
 
                     if (foundMatchSize > 0 &&

@@ -37,29 +37,28 @@ public class TagPairMatcher<T extends Comparable<T>> extends CaseAwareMatcher<T>
                     text.subSequence(textIdx, textIdx + escapeString.length()).toString().equals(escapeString)) {
                 escaped = true;
                 textIdx += escapeString.length();
-                continue;
-            }
+            } else {
 
-            if (escaped) {
-                escaped = false;
-                textIdx++;
-                continue;
-            }
+                if (escaped) {
+                    escaped = false;
+                } else {
 
-            boolean match = true;
-            for (int i = 0; i < closingTag.length(); i++) {
-                char c = caseSensitive ? text.charAt(textIdx + i) : Character.toUpperCase(text.charAt(textIdx + i));
-                if (c != closingTag.charAt(i)) {
-                    match = false;
-                    break;
+                    boolean match = true;
+                    for (int i = 0; i < closingTag.length(); i++) {
+                        char c = caseSensitive ? text.charAt(textIdx + i) : Character.toUpperCase(text.charAt(textIdx + i));
+                        if (c != closingTag.charAt(i)) {
+                            match = false;
+                            break;
+                        }
+                    }
+
+                    if (match) {
+                        return textIdx + closingTag.length();
+                    }
+
                 }
+                textIdx++;
             }
-
-            if (match) {
-                return textIdx + closingTag.length();
-            }
-
-            textIdx++;
         }
 
         return closesAtEndOfFile ? text.length() : -1;
@@ -70,7 +69,7 @@ public class TagPairMatcher<T extends Comparable<T>> extends CaseAwareMatcher<T>
             return 0;
         }
 
-        // Überprüfen, ob der openingTag am Anfang steht
+        // check, if the openingTag is at the beginning
         boolean match = true;
         for (int i = 0; i < openingTag.length(); i++) {
             char c = caseSensitive ? text.charAt(i) : Character.toUpperCase(text.charAt(i));
@@ -84,7 +83,7 @@ public class TagPairMatcher<T extends Comparable<T>> extends CaseAwareMatcher<T>
             return 0;
         }
 
-        // Nach dem closingTag suchen
+        // Search for the closingTag
         int length = searchForClosingTag(text);
         if (length == -1 && closesAtEndOfFile) {
             return text.length();

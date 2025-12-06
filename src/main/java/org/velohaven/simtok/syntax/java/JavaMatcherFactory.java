@@ -16,7 +16,7 @@ import java.util.List;
 public class JavaMatcherFactory {
 
     // Java operators but without < and > for generics
-    private final static String[] SYMBOL_OPERATORS = new String[]{
+    private static final String[] SYMBOL_OPERATORS = new String[]{
         "+", "-", "*", "/", "%",
             "++", "--",
             "=", "==", "<=", ">=",

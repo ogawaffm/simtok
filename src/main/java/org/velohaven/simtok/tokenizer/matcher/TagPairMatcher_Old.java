@@ -149,8 +149,8 @@ public class TagPairMatcher_Old<T extends Comparable<T>> extends CaseAwareMatche
             }
         }
 
-        if (other instanceof CaseAwareMatcher<T> otherCaseAwareMatcher) {
-            return Boolean.compare(otherCaseAwareMatcher.isCaseSensitive(), this.isCaseSensitive());
+        if (other instanceof CaseAwareMatcher) {
+            return Boolean.compare(((CaseAwareMatcher<T>) other).isCaseSensitive(), this.isCaseSensitive());
         }
 
         return 0;

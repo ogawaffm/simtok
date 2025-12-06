@@ -96,15 +96,15 @@ public class SequenceMatcher<T extends Comparable<T>> extends CaseAwareMatcher<T
             return result;
         }
 
-        if (other instanceof final SequenceMatcher<T> otherSequenceMatcher) {
-            result = sequence.compareTo(otherSequenceMatcher.sequence);
+        if (other instanceof SequenceMatcher) {
+            result = sequence.compareTo(((SequenceMatcher<T>) other).sequence);
             if (result != 0) {
                 return result;
             }
         }
 
-        if (other instanceof CaseAwareMatcher<T> otherCaseAwareMatcher) {
-            return Boolean.compare(otherCaseAwareMatcher.isCaseSensitive(), isCaseSensitive());
+        if (other instanceof CaseAwareMatcher) {
+            return Boolean.compare(((CaseAwareMatcher<T>) other).isCaseSensitive(), isCaseSensitive());
         }
 
         return 0;

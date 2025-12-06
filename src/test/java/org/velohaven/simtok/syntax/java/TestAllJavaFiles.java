@@ -8,14 +8,14 @@ import org.velohaven.simtok.tokenizer.matcher.Matcher;
 import java.io.IOException;
 import java.util.List;
 
-public class TestAllJavaFiles extends AllFilesTest<JavaMatchType> {
+class TestAllJavaFiles extends AllFilesTest<JavaMatchType> {
 
     public TestAllJavaFiles() {
         super(".java");
     }
 
     @Test
-    public void testAllJavaFiles() throws IOException {
+    void testAllJavaFiles() throws IOException {
 
         String[] reservedWords =
                 JavaTest.readReservedWords(Utils.getAbsoluteTestResourcesPath("java/reserved_words.txt")
@@ -24,6 +24,6 @@ public class TestAllJavaFiles extends AllFilesTest<JavaMatchType> {
         List<Matcher<JavaMatchType>> matchers = JavaMatcherFactory.create(reservedWords, 128);
 
 //        testAllFiles("src/test/resources/java", matchers, JavaMatchType.UNRECOGNIZED);
-        testAllFiles("c:/users/baechlek/Projects", matchers, JavaMatchType.UNRECOGNIZED, Integer.MAX_VALUE);
+        testAllFiles("../../Projects", matchers, JavaMatchType.UNRECOGNIZED, Integer.MAX_VALUE);
     }
 }

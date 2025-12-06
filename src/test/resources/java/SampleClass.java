@@ -78,7 +78,7 @@ public class Tokenizer<T extends Comparable<T>> {
 
                 if (!(matcher instanceof InWordBoundaries) || inputIdx == 0 || !isWordChar(
                     input.charAt(inputIdx - 1))) {
-                    //CharSequence subInput = input.subSequence(inputIdx, input.length());
+
                     foundMatchSize = matcher.findIfAheadIn(subInput);
 
                     if (foundMatchSize > 0 &&
